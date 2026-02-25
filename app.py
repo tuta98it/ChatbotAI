@@ -15,8 +15,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# ✅ Mount frontend
-app.mount("/", StaticFiles(directory="E:/tuta98it/ChatbotAI", html=True), name="static")
+
 
 class ChatRequest(BaseModel):
     message: str
@@ -33,3 +32,6 @@ def chat(req: ChatRequest):
     )
 
     return {"reply": response.json()["response"]}
+
+# ✅ Mount frontend
+app.mount("/", StaticFiles(directory="E:/tuta98it/ChatbotAI", html=True), name="static")
