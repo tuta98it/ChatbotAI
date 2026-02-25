@@ -1,7 +1,9 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 import requests
+
 
 app = FastAPI()
 # ✅ Bật CORS
@@ -12,6 +14,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# ✅ Mount frontend
+app.mount("/", StaticFiles(directory="E:/tuta98it/ChatbotAI", html=True), name="static")
 
 class ChatRequest(BaseModel):
     message: str
